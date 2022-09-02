@@ -1,10 +1,10 @@
 import './index.css'
 
 const TodoItem = props => {
-  const {title, deleteTodoItemHandler} = props
+  const {id, title, deleteTodoItemHandler} = props
 
-  const onClickDeleteHandler = deleteEvent => {
-    deleteTodoItemHandler(deleteEvent)
+  const onClickDeleteHandler = () => {
+    deleteTodoItemHandler(id)
   }
 
   return (
