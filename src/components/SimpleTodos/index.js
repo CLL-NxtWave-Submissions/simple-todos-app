@@ -1,3 +1,7 @@
+import {Component} from 'react'
+import TodoItem from '../TodoItem'
+import './index.css'
+
 const initialTodosList = [
   {
     id: 1,
@@ -33,4 +37,33 @@ const initialTodosList = [
   },
 ]
 
-// Write your code here
+export default class SimpleTodos extends Component {
+  state = {
+    todoItemList: initialTodosList,
+  }
+
+  deleteTodoItemHandler = deleteTodoItemEvent => {
+    console.log(deleteTodoItemEvent)
+  }
+
+  render() {
+    const {todoItemList} = this.state
+
+    return (
+      <div className="simple-todos-container">
+        <div className="simple-todos-content-container">
+          <h1 className="simple-todos-header">Simple Todos</h1>
+          <ul className="todo-item-list-container">
+            {todoItemList.map(currentTodoItem => (
+              <TodoItem
+                key={currentTodoItem.id}
+                title={currentTodoItem.title}
+                deleteTodoItemHandler={this.deleteTodoItemHandler}
+              />
+            ))}
+          </ul>
+        </div>
+      </div>
+    )
+  }
+}
