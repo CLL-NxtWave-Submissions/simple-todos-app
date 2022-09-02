@@ -42,8 +42,15 @@ export default class SimpleTodos extends Component {
     todoItemList: initialTodosList,
   }
 
-  deleteTodoItemHandler = deleteTodoItemEvent => {
-    console.log(deleteTodoItemEvent)
+  deleteTodoItemHandler = deleteTodoItemId => {
+    const {todoItemList} = this.state
+    const filteredTodoItemListExcludingInputItemId = todoItemList.filter(
+      currentTodoItem => currentTodoItem.id !== deleteTodoItemId,
+    )
+
+    this.setState({
+      todoItemList: filteredTodoItemListExcludingInputItemId,
+    })
   }
 
   render() {
@@ -57,6 +64,7 @@ export default class SimpleTodos extends Component {
             {todoItemList.map(currentTodoItem => (
               <TodoItem
                 key={currentTodoItem.id}
+                id={currentTodoItem.id}
                 title={currentTodoItem.title}
                 deleteTodoItemHandler={this.deleteTodoItemHandler}
               />
